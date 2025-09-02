@@ -1,20 +1,29 @@
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import { Image } from "expo-image";
 import { router } from "expo-router";
+import { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 
 const SplashScreen = ({ navigation }: any) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.navigate("/loginscreen"); // 👈 change to "SignUp" if you want
-    }, 2000);
+    }, 20000);
 
     return () => clearTimeout(timer);
   }, [navigation]);
 
   return (
+
     <View style={styles.container}>
-      <Text style={styles.logo}>🚀 MyApp</Text>
-      <ActivityIndicator size="large" color="#4CAF50" />
+
+     <Image
+     
+     source={require('../assets/images/splash.png')}
+     style={styles.logo}
+     
+     />
+
+    
     </View>
   );
 };
@@ -29,9 +38,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff", // white background
   },
   logo: {
-    fontSize: 32,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "#4CAF50", // green accent
+  height:400,
+  width:400,
+  resizeMode:'center'
   },
 });

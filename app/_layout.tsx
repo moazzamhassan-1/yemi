@@ -28,6 +28,7 @@ export default function RootLayout() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="splashscreen" />
+        <Stack.Screen name="OnboardingScreen"/>
         <Stack.Screen name="loginscreen" />
         <Stack.Screen name="registerscreen" />
       </Stack>
