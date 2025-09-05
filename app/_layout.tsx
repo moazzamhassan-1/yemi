@@ -28,11 +28,16 @@ export default function RootLayout() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="splashscreen" />
-        <Stack.Screen name="OnboardingScreen"/>
+        <Stack.Screen name="getstarted "/>
         <Stack.Screen name="loginscreen" />
         <Stack.Screen name="registerscreen" />
+        <Stack.Screen name="passwordscreen"/>
+        <Stack.Screen name="typepassword"/>
+        <Stack.Screen name="forgetpassword"/>
+        <Stack.Screen name="recoverpassword"/>
+        <Stack.Screen name="verficationscreen"/>
+        <Stack.Screen name="newpassword"/>
       </Stack>
-
       <StatusBar style="auto" />
     </ThemeProvider>
   );
