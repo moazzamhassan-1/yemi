@@ -48,7 +48,8 @@ const SignUpScreen = ({ navigation }: any) => {
       />
 
       <View style={styles.mainview}>
-        <View style={styles.inputview}>/
+        <View style={styles.inputview}>
+          /
           <Input
             placeholder="Email"
             value={email}
@@ -68,10 +69,11 @@ const SignUpScreen = ({ navigation }: any) => {
           <Ionicons name="eye-off-outline" size={22} color="black" />
         </View>
 
-        <View style={styles.inputview}>/
+        <View style={styles.inputview}>
+          /
           <CountryPicker
             countryCode={countryCode}
-            // placeholder={}
+            
             withFlag
             withCallingCode
             withFilter
@@ -81,7 +83,6 @@ const SignUpScreen = ({ navigation }: any) => {
               setCallingCode(country.callingCode[0]);
             }}
           />
-
           <TextInput
             style={styles.input}
             placeholder="Your number"
