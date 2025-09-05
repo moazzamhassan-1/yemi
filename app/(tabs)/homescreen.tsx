@@ -13,6 +13,9 @@ import {
     TextInput,
     View,
 } from "react-native";
+// ...existing code...
+// import camera1 from '';
+// ...existing code...
 
 
 import Swiper from "react-native-swiper";
@@ -152,7 +155,7 @@ export default function homescreen() {
                     />
 
                     <Image
-                        source={require('../assets/images/camera1.png')}
+                        source={require('../../assets/images/camera1.png')}
                     />
 
                 </View>
