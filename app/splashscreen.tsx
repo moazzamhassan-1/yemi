@@ -7,7 +7,7 @@ const SplashScreen = ({ navigation }: any) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.navigate("/loginscreen"); // 👈 change to "SignUp" if you want
-    }, 20000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [navigation]);

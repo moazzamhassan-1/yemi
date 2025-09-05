@@ -80,7 +80,7 @@ const LoginScreen = ({ navigation }: any) => {
 
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin} >
         <Text style={styles.buttonText}> Next </Text>
 
       </TouchableOpacity>
