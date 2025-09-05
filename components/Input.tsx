@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "#F8F8F8",
     borderRadius: 40,
-    padding: 10,
-    marginVertical:20
+    // paddingHorizontal: 20,
+    // paddingVertical: 10,
   },
 });

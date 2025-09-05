@@ -25,7 +25,7 @@ const typepassword = ({ navigation }: any) => {
                 viewBox="0 0 200 200"
             >
 
-                <View style={styles.topShape}></View>
+                {/* <View style={styles.topShape}></View> */}
 
             </Svg>
 
@@ -80,7 +80,7 @@ const typepassword = ({ navigation }: any) => {
             </View>
 
 
-            <SecoundryButton title="Cancel" onPress={() => router.replace("/forgetpassword")}
+            <SecoundryButton title="Cancel" onPress={() => router.replace("/(tabs)")}
 
             />
 
