@@ -43,48 +43,47 @@ const forgetpassword = ({ navigation }: any) => {
             </View>
 
             <View style={styles.cardsview}>
+
+
+                <Image
+                    source={require('../assets/images/ellispseorange.png')}
+                    style={styles.ellips}
+                />
+                <Image
+                    source={require('../assets/images/ellispseorange.png')}
+                    style={styles.ellips}
+                />
+                <Image
+                    source={require('../assets/images/ellispseorange.png')}
+                    style={styles.ellips}
+                />
+                <Image
+                    source={require('../assets/images/ellispseorange.png')}
+                    style={styles.ellips}
+                />
+                <Image
+                    source={require('../assets/images/ellispseorange.png')}
+                    style={styles.ellips}
+                />
+                <Image
+                    source={require('../assets/images/ellispseorange.png')}
+                    style={styles.ellips}
+                />
                 
-            
-                  <Image
+                <Image
                     source={require('../assets/images/ellispseorange.png')}
                     style={styles.ellips}
                 />
-          <Image
-                    source={require('../assets/images/ellispseorange.png')}
-                    style={styles.ellips}
-                />
-          <Image
-                    source={require('../assets/images/ellispseorange.png')}
-                    style={styles.ellips}
-                />
-          <Image
-                    source={require('../assets/images/ellispseorange.png')}
-                    style={styles.ellips}
-                />
-          <Image
-                    source={require('../assets/images/ellispseorange.png')}
-                    style={styles.ellips}
-                />
-          <Image
-                    source={require('../assets/images/ellispseorange.png')}
-                    style={styles.ellips}
-                />
-          <Image
-                    source={require('../assets/images/ellispseorange.png')}
-                    style={styles.ellips}
-                />
-          <Image
-                    source={require('../assets/images/ellispseorange.png')}
-                    style={styles.ellips}
-                />
-          <Image
+                <Image
                     source={require('../assets/images/ellispseorange.png')}
                     style={styles.ellips}
                 />
             </View>
 
             <View style={styles.buttonview}>
-                <SecoundryButton title="Not you" onPress={() => router.replace("/recoverpassword")}
+                <SecoundryButton title=" Forgot your password?"
+
+                    onPress={() => router.replace("/recoverpassword")}
 
                 />
 
@@ -174,24 +173,21 @@ const styles = StyleSheet.create({
         gap: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 200
+        marginBottom: 30
 
     },
-  
+
     ellips: {
 
-    height: 20,
-    width: 20
-  },
+        height: 20,
+        width: 20
+    },
     buttonicon: {
         height: 20,
         width: 20,
         marginTop: 10,
     },
-    account: {
-        fontSize: 15,
-        fontWeight: '300'
-    },
+ 
     buttonview: {
         flexDirection: 'row',
         alignContent: 'center',

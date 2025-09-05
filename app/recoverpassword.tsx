@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
         fontSize: 21,
         marginBottom: 10
     },
+    
      textview: {
 
         justifyContent: 'center',
@@ -154,16 +155,6 @@ const styles = StyleSheet.create({
 
     },
 
-    buttonicon:
-    {
-        height: 20,
-        width: 20,
-        marginTop: 10,
-    },
-    account: {
-        fontSize: 15,
-        fontWeight: '300'
-    },
     buttonview: {
         flexDirection: 'row',
         alignContent: 'center',

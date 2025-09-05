@@ -9,7 +9,7 @@ import Svg, { Path } from "react-native-svg";
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
 
   return (
 
@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     top: -70,
     left: -25,
 
-
   },
   rightShape: {
     position: "absolute",
     right: -120,
-    width: 200,
+    width: 250,
     height: 200,
-    marginBottom: 300
+    marginBottom: 300,
+    transform: [{ rotate: "140deg" }],
   },
 
   title: {

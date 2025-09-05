@@ -126,7 +126,9 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     top: 100,
-    right: -65
+    right: -95,
+     
+    transform: [{ rotate: "140deg" }],
   },
 
 
@@ -160,7 +162,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    marginBottom:20
   },
 
   contactview: {
@@ -172,28 +175,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10
-  },
-
-  input: {
-    height: 50,
-    backgroundColor: "#F8F8F8",
-    borderRadius: 40,
     paddingHorizontal: 10,
-    paddingVertical: 5,
-
+    marginBottom:30
   },
-  button: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "#FA8232",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 1,
-
-  },
-
+  
   buttonText: {
     color: "#fff",
     fontSize: 18,
@@ -205,15 +190,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     zIndex: 1,
   },
-  bottomShape: {
-    position: "absolute",
-    bottom: -20,      // push more downward so button is fully on top
-    right: -60,
-    width: 300,
-    height: 200,
-    backgroundColor: "#DCE6FF",
-    borderTopLeftRadius: 200,
-    zIndex: 0,         // stay in background
-  },
+  
 });
 

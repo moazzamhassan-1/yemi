@@ -52,10 +52,7 @@ const typepassword = ({ navigation }: any) => {
                     source={require('../assets/images/ellispse 01.png')}
                     style={styles.ellips}
                 />
-                <Image
-                    source={require('../assets/images/ellispse 01.png')}
-                    style={styles.ellips}
-                />
+               
                 <Image
                     source={require('../assets/images/ellispse 01.png')}
                     style={styles.ellips}
@@ -83,7 +80,7 @@ const typepassword = ({ navigation }: any) => {
             </View>
 
 
-            <SecoundryButton title="Forgot your password?" onPress={() => router.replace("/forgetpassword")}
+            <SecoundryButton title="Cancel" onPress={() => router.replace("/forgetpassword")}
 
             />
 
@@ -174,15 +171,7 @@ const styles = StyleSheet.create({
         height: 20,
         width: 20
     },
-    buttonicon: {
-        height: 20,
-        width: 20,
-        marginTop: 10,
-    },
-    account: {
-        fontSize: 15,
-        fontWeight: '300'
-    },
+
     buttonview: {
         flexDirection: 'row',
         alignContent: 'center',
