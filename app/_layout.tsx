@@ -23,16 +23,26 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+
       <Stack
         initialRouteName="splashscreen"
         screenOptions={{ headerShown: false }}
       >
+        
         <Stack.Screen name="splashscreen" />
-        <Stack.Screen name="OnboardingScreen"/>
+        <Stack.Screen name="getstarted "/>
         <Stack.Screen name="loginscreen" />
         <Stack.Screen name="registerscreen" />
-      </Stack>
+        <Stack.Screen name="passwordscreen"/>
+        <Stack.Screen name="typepassword"/>
+        <Stack.Screen name="forgetpassword"/>
+        <Stack.Screen name="recoverpassword"/>
+        <Stack.Screen name="verficationscreen"/>
+        <Stack.Screen name="newpassword"/>
+        <Stack.Screen name="hellocard"/>
+        <Stack.Screen name="tab"/>
 
+      </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
