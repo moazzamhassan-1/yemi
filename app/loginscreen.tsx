@@ -55,11 +55,14 @@ const LoginScreen = ({ navigation }: any) => {
         />
       </View>
 
+
+
       <Input
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />
+
 
       <PrimaryButton title="Next" onPress={() => router.replace("/passwordscreen")} />
 

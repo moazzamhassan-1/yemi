@@ -6,6 +6,7 @@ import { StyleSheet, View } from "react-native";
 const SplashScreen = ({ navigation }: any) => {
   useEffect(() => {
     const timer = setTimeout(() => {
+
       router.navigate("/homescreen"); // 👈 change to "SignUp" if you want
     }, 200);
 
