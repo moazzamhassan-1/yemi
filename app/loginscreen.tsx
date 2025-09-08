@@ -70,7 +70,7 @@ const LoginScreen = ({ navigation }: any) => {
       <View style={styles.topview}>
         <PrimaryButton title="Next" onPress={() => router.replace("/(tabs)")} />
 
-        <SecoundryButton title="Cancel" onPress={() => router.back()} />
+        <SecoundryButton title="Cancel" onPress={() => router.replace("/getstarted")} />
       </View>
 
       <View style={styles.bottomShape}></View>
