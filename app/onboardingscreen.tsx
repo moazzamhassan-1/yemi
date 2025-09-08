@@ -1,54 +1,63 @@
 import { Image } from "expo-image";
-import { router } from "expo-router"; // if you use expo-router
+import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const hellocard = () => {
+const cards = [
+  {
+    id: 1,
+    image: require("../assets/images/hellocrd.png"),
+    title: "Hello",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consectetur turpis. Morbi eu eleifend lacus.",
+  },
+  {
+    id: 2,
+    image: require("../assets/images/readycard.png"),
+    title: "Ready?",
+    desc: "Get started with the best shopping experience. Let’s make it happen!",
+  },
+  // You can add more cards here if needed
+];
+
+const HelloCard = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => {
-        if (prev < 3) {
-          return prev + 1;
-        } else {
-          clearInterval(timer);
-     
-          setTimeout(() => {
-            router.replace("/readycard");
-          }, 500);
-          return prev;
-        }
-      });
-    }, 500); 
+    if (activeIndex < cards.length - 1) {
+      const timer = setTimeout(() => {
+        setActiveIndex((prev) => prev + 1);
+      }, 2000); // change card every 2s
 
-    return () => clearInterval(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    } else {
+      // Navigate after last card
+      const redirect = setTimeout(() => {
+        router.replace("/getstarted");
+      }, 3000);
+
+      return () => clearTimeout(redirect);
+    }
+  }, [activeIndex]);
+
+  const { image, title, desc } = cards[activeIndex];
 
   return (
     <View style={styles.container}>
-    
+      {/* Top Orange Shape */}
       <View style={styles.topShape}></View>
 
+      {/* Card Content */}
       <View style={styles.card}>
-        <Image
-          source={require("../assets/images/hellocrd.png")}
-          style={styles.image}
-          contentFit="cover"
-        />
-
+        <Image source={image} style={styles.image} contentFit="cover" />
         <View style={styles.textBox}>
-          <Text style={styles.title}>Hello</Text>
-          <Text style={styles.desc}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-            consectetur turpis. Morbi eu eleifend lacus.
-          </Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.desc}>{desc}</Text>
         </View>
       </View>
 
       {/* Dots Indicator */}
       <View style={styles.dots}>
-        {[0, 1, 2, 3].map((i) => (
+        {cards.map((_, i) => (
           <View
             key={i}
             style={[
@@ -62,7 +71,7 @@ const hellocard = () => {
   );
 };
 
-export default hellocard;
+export default HelloCard;
 
 const styles = StyleSheet.create({
   container: {

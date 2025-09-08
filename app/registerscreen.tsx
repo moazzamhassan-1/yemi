@@ -4,22 +4,58 @@ import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import CountryPicker from "react-native-country-picker-modal";
+import axios from "axios";
 
 const SignUpScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
   const [countryCode, setCountryCode] = useState("GB"); // default UK
   const [callingCode, setCallingCode] = useState("44");
   const [phone, setPhone] = useState("");
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     console.log("Email:", email, "Password:", password);
+    console.log("First Name:", firstName, "Last Name:", lastName);
+    console.log("Number", countryCode);
 
-    navigation.replace("App"); // 👈 Make sure "App" or TabNavigator is registered in AppNavigator
+    try {
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("f_name", firstName);
+      formData.append("l_name", lastName);
+      formData.append("phone", phone);
+
+      const response = await axios.post(
+        "https://yemiecom.infolaravel.news/api/v1/auth/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (response.data) {
+        Alert.alert("Success", "Account created successfully!", [
+          {
+            text: "OK",
+            onPress: () => router.replace("/loginscreen"), // 👈 go to login
+          },
+        ]);
+      }
+
+      console.log("Response:", response.data);
+      Alert.alert("Success", "Account created successfully!");
+    } catch (error: any) {
+      console.error("Error:", error.response?.data || error.message);
+      Alert.alert("Error", error.response?.data?.message);
+    }
   };
 
   return (
@@ -42,38 +78,53 @@ const SignUpScreen = ({ navigation }: any) => {
 
       <Text style={styles.title}> Create Account </Text>
 
-      <Image
+      {/* <Image
         source={require("../assets/images/camera.png")}
         style={styles.camera}
-      />
+      /> */}
 
       <View style={styles.mainview}>
+        {/* Email Password */}
         <View style={styles.inputview}>
-          /
           <Input
-            placeholder="Email"
+            placeholder="Enter Email"
             value={email}
             onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
           />
         </View>
-
+        {/* Password Feild */}
         <View style={styles.inputview}>
           <Input
-            placeholder="Password"
-            value={email}
+            placeholder="Enter Password"
+            value={password}
             onChangeText={setPassword}
           />
 
           <Ionicons name="eye-off-outline" size={22} color="black" />
+        </View>
+        {/* First Name Field */}
+        <View style={styles.inputview}>
+          <Input
+            placeholder="Enter First Name"
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+        </View>
+
+        {/* Last Name Field */}
+        <View style={styles.inputview}>
+          <Input
+            placeholder="Enter Last Name"
+            value={lastName}
+            onChangeText={setLastName}
+          />
         </View>
 
         <View style={styles.inputview}>
           /
           <CountryPicker
             countryCode={countryCode}
-            
+            callingCode={callingCode}
             withFlag
             withCallingCode
             withFilter
@@ -83,9 +134,11 @@ const SignUpScreen = ({ navigation }: any) => {
               setCallingCode(country.callingCode[0]);
             }}
           />
+          {/* Show the country code */}
+          <Text style={styles.countryCode}>+{callingCode}</Text>
           <TextInput
             style={styles.input}
-            placeholder="Your number"
+            placeholder="Enter your Number"
             keyboardType="phone-pad"
             value={phone}
             onChangeText={setPhone}
@@ -94,10 +147,13 @@ const SignUpScreen = ({ navigation }: any) => {
         </View>
       </View>
 
-      <PrimaryButton
-        title="Next"
-        onPress={() => router.replace("/loginscreen")}
-      />
+      <View style={styles.mainview}>
+        <PrimaryButton title="Next" onPress={handleSignup} />
+        <PrimaryButton
+          title="Cancel"
+          onPress={() => router.replace("/getstarted")}
+        />
+      </View>
     </View>
   );
 };
@@ -178,7 +234,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 30,
   },
-
+  countryCode: {
+    fontSize: 16,
+    marginRight: 8,
+    color: "#202020",
+    fontWeight: "bold",
+  },
   buttonText: {
     color: "#fff",
     fontSize: 18,
