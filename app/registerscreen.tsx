@@ -1,9 +1,10 @@
 import Input from "@/components/Input";
 import PrimaryButton from "@/components/PrimaryButton";
+import SecondaryButton from "@/components/SecoundryButton";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import CountryPicker from "react-native-country-picker-modal";
@@ -149,7 +150,7 @@ const SignUpScreen = ({ navigation }: any) => {
 
       <View style={styles.mainview}>
         <PrimaryButton title="Next" onPress={handleSignup} />
-        <PrimaryButton
+        <SecondaryButton
           title="Cancel"
           onPress={() => router.replace("/getstarted")}
         />
