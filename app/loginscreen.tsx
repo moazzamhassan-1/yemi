@@ -2,14 +2,60 @@ import Input from "@/components/Input";
 import PrimaryButton from "@/components/PrimaryButton";
 import SecoundryButton from "@/components/SecoundryButton";
 import { Image } from "expo-image";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import axios from "axios";
 
 const LoginScreen = ({ navigation }: any) => {
+
   const [email, setEmail] = useState("");
   const [password, setPassord] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router=useRouter();
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter both email and password");
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "https://yemiecom.infolaravel.news/api/v1/auth/login",
+        { email_or_phone: email, password: password }
+      );
+      console.log("Login Response:", response.data);
+      if (response.data?.status === true) {
+        Alert.alert("Success", "Login successful!");
+        // Save token if provided
+        // AsyncStorage.setItem("token", response.data.token);
+        router.replace("/(tabs)"); // Navigate to home screen
+      } else {
+        Alert.alert(
+          "Login Failed",
+          response.data?.message || "Invalid credentials"
+        );
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Login Error:", error.response?.data || error.message);
+        Alert.alert(
+          "Error",
+          error.response?.data?.message || "Something went wrong"
+        );
+      } else {
+        console.error("Login Error:", (error as Error).message);
+        Alert.alert(
+          "Error",
+          (error as Error).message || "Something went wrong"
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -67,10 +113,13 @@ const LoginScreen = ({ navigation }: any) => {
         <Text style={styles.forgotPasswordtext}>Forgot Password</Text>
       </Pressable>
 
-      <View style={styles.topview}>
-        <PrimaryButton title="Next" onPress={() => router.replace("/(tabs)")} />
+      <View style={styles.mainview}>
+        <PrimaryButton title="Next" onPress={handleLogin} />
 
-        <SecoundryButton title="Cancel" onPress={() => router.replace("/getstarted")} />
+        <SecoundryButton
+          title="Cancel"
+          onPress={() => router.replace("/getstarted")}
+        />
       </View>
 
       <View style={styles.bottomShape}></View>
@@ -131,8 +180,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 20,
   },
+   mainview: {
+    gap: 10,
+    marginBottom: 15,
+    width: "100%",
+  },
   topview: {
-    flexDirection:"row",
+    flexDirection: "row",
     gap: 15,
     marginBottom: 15,
     width: "100%",

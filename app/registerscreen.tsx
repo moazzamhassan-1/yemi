@@ -48,7 +48,7 @@ const SignUpScreen = () => {
             text: "OK",
             onPress: () =>
               router.replace({
-                pathname: "/verifyaccount", // 👈 navigate to verifyaccount screen
+                pathname: "/loginscreen", // 👈 navigate to verifyaccount screen
                 params: { phone, email }, // 👈 pass phone & email to verification
               }), // 👈 go to login
           },

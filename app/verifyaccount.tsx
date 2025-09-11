@@ -7,12 +7,16 @@ import {
   Modal,
   Pressable,
   TextInput,
+  Alert,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import PrimaryButton from "@/components/PrimaryButton";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
+import axios from "axios";
+import SecoundryButton from "@/components/SecoundryButton";
 
 const verifyaccount = () => {
+  const router = useRouter();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const inputs = useRef<Array<TextInput | null>>([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -28,20 +32,42 @@ const verifyaccount = () => {
     }
   };
 
-  
+  const handleVerifyAccount = async () => {
+    const enteredOtp = otp.join("");
 
-  const handleVerifyAccount = () => {
-    // Implement verify logic here
-    const enteredOtp = otp.join(""); // Combine OTP digits
+    if (enteredOtp.length !== 6) {
+      Alert.alert("Error", "Please enter the 6-digit code.");
+      return;
+    }
 
-    if (enteredOtp.length === 6) {
-      // TODO: call API to verify OTP
+    try {
+      // 👇 Replace URL with your actual verify API endpoint
+      const response = await axios.post(
+         "https://yemiecom.infolaravel.news/api/v1/auth/verify-email",
+        {
+          email_or_phone: phone, // pass phone from previous step
+          otp: enteredOtp,
+        }
+      );
 
-      // ✅ If OTP is valid, redirect to login
-      router.push("/loginscreen");
-    } else {
-      // Optional: show error or modal if OTP not complete
-      // setModalVisible(true);
+      console.log("Verify Response:", response.data);
+
+      if (response.data.status === true) {
+        Alert.alert("Success", "Account verified successfully!");
+        router.push("/loginscreen"); // ✅ go to login screen
+      } else {
+        Alert.alert("Failed", response.data.message || "Invalid OTP");
+      }
+    } catch (error: any) {
+      console.error("Verify Error:", error.response?.data || error.message);
+      if (error.response?.status === 429) {
+        setModalVisible(true); // too many attempts
+      } else {
+        Alert.alert(
+          "Error",
+          error.response?.data?.message || "Something went wrong"
+        );
+      }
     }
   };
 
@@ -92,6 +118,7 @@ const verifyaccount = () => {
 
       {/* <PrimaryButton title="Send Again" onPress={handleSendAgain} /> */}
       <PrimaryButton title="Verify" onPress={handleVerifyAccount} />
+      <SecoundryButton title="Cancel" onPress={() => router.replace("/registerscreen")} />
 
       {/* ✅ Modal */}
       <Modal
