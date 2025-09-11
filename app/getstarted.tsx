@@ -7,9 +7,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
 const GetStarted = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [number, setNumber] = useState("");
+  
 
   return (
     <View style={styles.container}>

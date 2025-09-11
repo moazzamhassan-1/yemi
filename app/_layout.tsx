@@ -36,8 +36,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack initialRouteName="splashscreen" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="splashscreen" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" /> {/* This is your Splash entry */}
         <Stack.Screen name="onboardingscreen" />
         <Stack.Screen name="getstarted" />
         <Stack.Screen name="registerscreen" />
