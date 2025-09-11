@@ -9,6 +9,7 @@ import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { ScreenStack } from "react-native-screens";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -23,25 +24,22 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-
       <Stack
         initialRouteName="splashscreen"
         screenOptions={{ headerShown: false }}
       >
-        
         <Stack.Screen name="splashscreen" />
-        <Stack.Screen name="getstarted "/>
-        <Stack.Screen name="loginscreen" />
+        <Stack.Screen name="onboardingscreen" />
+        <Stack.Screen name="getstarted" />
         <Stack.Screen name="registerscreen" />
-        <Stack.Screen name="passwordscreen"/>
-        <Stack.Screen name="typepassword"/>
-        <Stack.Screen name="forgetpassword"/>
-        <Stack.Screen name="recoverpassword"/>
-        <Stack.Screen name="verficationscreen"/>
-        <Stack.Screen name="newpassword"/>
-        <Stack.Screen name="hellocard"/>
-        <Stack.Screen name="tab"/>
-
+        <Stack.Screen name="verifyaccount" />
+        <Stack.Screen name="loginscreen" />
+        <Stack.Screen name="setnewpassword" />
+        <Stack.Screen name="forgetpassword" />
+        <Stack.Screen name="recoverpassword" />
+        <Stack.Screen name="verifycode" />
+        <Stack.Screen name="setnewpassword" />
+        <Stack.Screen name="tab" />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

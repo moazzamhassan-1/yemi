@@ -25,7 +25,7 @@ const RecoverPassword = () => {
 
     // Navigate to verification screen with the selected method
     router.push({
-      pathname: "/verificationscreen",
+      pathname: "/verifycode",
       params: { method: selected },
     });
   };

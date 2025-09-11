@@ -132,7 +132,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   topview: {
-    gap: 10,
+    flexDirection:"row",
+    gap: 15,
     marginBottom: 15,
     width: "100%",
   },

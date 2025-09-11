@@ -10,12 +10,11 @@ import Svg, { Path } from "react-native-svg";
 import CountryPicker from "react-native-country-picker-modal";
 import axios from "axios";
 
-const SignUpScreen = ({ navigation }: any) => {
+const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [number, setNumber] = useState("");
   const [countryCode, setCountryCode] = useState("GB"); // default UK
   const [callingCode, setCallingCode] = useState("44");
   const [phone, setPhone] = useState("");
@@ -23,7 +22,7 @@ const SignUpScreen = ({ navigation }: any) => {
   const handleSignup = async () => {
     console.log("Email:", email, "Password:", password);
     console.log("First Name:", firstName, "Last Name:", lastName);
-    console.log("Number", countryCode);
+    console.log("CountryCode:", countryCode, "Phone:", phone);
 
     try {
       const formData = new FormData();
@@ -43,19 +42,26 @@ const SignUpScreen = ({ navigation }: any) => {
         }
       );
       if (response.data) {
+        console.log("Response:", response.data);
         Alert.alert("Success", "Account created successfully!", [
           {
             text: "OK",
-            onPress: () => router.replace("/loginscreen"), // 👈 go to login
+            onPress: () =>
+              router.replace({
+                pathname: "/verifyaccount", // 👈 navigate to verifyaccount screen
+                params: { phone, email }, // 👈 pass phone & email to verification
+              }), // 👈 go to login
           },
         ]);
       }
 
       console.log("Response:", response.data);
-      Alert.alert("Success", "Account created successfully!");
     } catch (error: any) {
       console.error("Error:", error.response?.data || error.message);
-      Alert.alert("Error", error.response?.data?.message);
+      Alert.alert(
+        "Error",
+        error.response?.data?.message || "Something went wrong"
+      );
     }
   };
 

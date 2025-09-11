@@ -35,11 +35,11 @@ const GetStarted = () => {
       {/* <View style={{ backgroundColor: "red" }}> */}
 
       {/* <Text> */}
-        <Image
-          source={require("../assets/images/splash.png")}
-          style={styles.yemiLogo}
-          contentFit="contain"
-        />
+      <Image
+        source={require("../assets/images/splash.png")}
+        style={styles.yemiLogo}
+        contentFit="contain"
+      />
       {/* </Text> */}
 
       {/* <Text style={styles.logo}>yemi</Text> */}
@@ -48,22 +48,23 @@ const GetStarted = () => {
       <Text style={styles.title}>“Shop Smart. Shop Yemi.”</Text>
       {/* </View> */}
 
-      {/* Primary Button */}
-      <PrimaryButton
-        title="Let's get started"
-        onPress={() => router.replace("/registerscreen")}
-      />
-
       {/* Secondary Button with Arrow */}
-      <View style={styles.buttonRow}>
-        <SecoundryButton
-          title="I already have an account"
-          onPress={() => router.replace("/loginscreen")}
+      <View style={styles.mainview}>
+        {/* Primary Button */}
+        <PrimaryButton
+          title="Let's get started"
+          onPress={() => router.replace("/registerscreen")}
         />
-        <Image
-          source={require("../assets/images/Button.png")}
-          style={styles.arrowIcon}
-        />
+        <View style={styles.buttonRow}>
+          <SecoundryButton
+            title="I already have an account"
+            onPress={() => router.replace("/loginscreen")}
+          />
+          <Image
+            source={require("../assets/images/Button.png")}
+            style={styles.arrowIcon}
+          />
+        </View>
       </View>
     </View>
   );
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     // paddingTop: 10,
     // backgroundColor: "green",
-    marginTop: "80%",
+    marginTop: "70%",
   },
   logo: {
     fontSize: 64,
@@ -133,6 +134,12 @@ const styles = StyleSheet.create({
     width: 20,
     marginLeft: 8,
     marginTop: 2,
+  },
+
+  mainview: {
+    gap: 10,
+    marginBottom: 15,
+    width: "100%",
   },
 });
 function RFValue(arg0: string): any {
