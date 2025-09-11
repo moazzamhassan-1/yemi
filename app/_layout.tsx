@@ -47,7 +47,6 @@ export default function RootLayout() {
         <Stack.Screen name="forgetpassword" />
         <Stack.Screen name="recoverpassword" />
         <Stack.Screen name="verifycode" />
-        <Stack.Screen name="setnewpassword" />
         <Stack.Screen name="tab" />
       </Stack>
       <StatusBar style="auto" />
