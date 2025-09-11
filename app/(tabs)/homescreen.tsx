@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { ImageBackground } from "expo-image";
 import React from "react";
 import {
+    Alert,
     Dimensions,
     FlatList,
     Image,
@@ -136,9 +137,30 @@ const PRODUCTS = [
         price: "$99",
         image: "https://images.unsplash.com/photo-1606813902907-3c0ebfc2a07c",
     },
+     {
+        id: "2",
+        name: "Adidas Ultraboost",
+        price: "$140",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+    },
+     {
+        id: "2",
+        name: "Adidas Ultraboost",
+        price: "$140",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+    },
+     {
+        id: "2",
+        name: "Adidas Ultraboost",
+        price: "$140",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+    },
+      
+    
 ];
 
 export default function homescreen() {
+
     return (
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 
@@ -152,7 +174,7 @@ export default function homescreen() {
                     />
 
                     <Image
-                        source={require('../assets/images/camera1.png')}
+                        source={require('../../assets/images/camera1.png')}
                     />
 
                 </View>
@@ -191,14 +213,16 @@ export default function homescreen() {
 
                     <Text style={styles.sectionTitle}>Categories</Text>
 
-                    <Pressable style={styles.seeAllBtn}>
-
-                        <Text style={styles.seeAllText}>See All</Text>
-                        <View style={styles.seeAllIconWrap}>
-
-                            <Ionicons name="arrow-forward" size={16} color="#fff" />
-                        </View>
-                    </Pressable>
+                            <Pressable style={styles.seeAllBtn}>
+                              <Text style={styles.seeAllText}>See All</Text>
+                              
+                                <Pressable style={styles.seeAllIconWrap}
+                                 onPress={() => Alert.alert("Working on it")}
+                                >
+                                <Ionicons name="arrow-forward" size={16} color="#fff" />
+                                </Pressable>
+                           
+                            </Pressable>
                 </View>
 
                 <FlatList
@@ -256,7 +280,9 @@ export default function homescreen() {
 
                 <Text style={styles.sectionTitle}>New Item</Text>
 
-                <Pressable style={styles.seeAllBtn}>
+                <Pressable style={styles.seeAllBtn}
+                onPress={()=>Alert.alert('working on it')}
+                >
 
                     <Text style={styles.seeAllText}>See All</Text>
                     <View style={styles.seeAllIconWrap}>
@@ -287,7 +313,9 @@ export default function homescreen() {
 
                 <Text style={styles.sectionTitle}>Flash Sale</Text>
 
-                <Pressable style={styles.seeAllBtn}>
+                <Pressable style={styles.seeAllBtn}
+                onPress={()=>Alert.alert('working on it')}
+                >
 
                     <Text style={styles.seeAllText}>See All</Text>
                     <View style={styles.seeAllIconWrap}>
@@ -298,24 +326,26 @@ export default function homescreen() {
             </View>
 
             <FlatList
-                data={PRODUCTS}
-                horizontal
-                keyExtractor={(item) => item.id + "flash"}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <Pressable style={styles.saleCard}>
-                        <Image source={{ uri: item.image }} style={styles.saleImg} />
-                        <Text style={styles.productName}>{item.name}</Text>
-                        <Text style={styles.productPrice}>{item.price}</Text>
-                    </Pressable>
-                )}
-            />
+  data={PRODUCTS.slice(0, 6)} // only take first 6 items
+  keyExtractor={(item) => item.id + "flash"}
+  numColumns={3}
+  renderItem={({ item }) => (
+    <Pressable style={styles.flashsaleCard}>
+      <Image source={{ uri: item.image }} style={styles.flashsaleImg} />
+      <Text style={styles.productName}>{item.name}</Text>
+      <Text style={styles.productPrice}>{item.price}</Text>
+    </Pressable>
+  )}
+/>
+
 
             <View style={styles.sectionHeader}>
 
                 <Text style={styles.sectionTitle}>Most Popular</Text>
 
-                <Pressable style={styles.seeAllBtn}>
+                <Pressable style={styles.seeAllBtn}
+                onPress={()=>Alert.alert('Working on it')}
+                >
 
                     <Text style={styles.seeAllText}>See All</Text>
                     <View style={styles.seeAllIconWrap}>
@@ -331,10 +361,10 @@ export default function homescreen() {
                 keyExtractor={(item) => item.id + "popular"}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
-                    <Pressable style={styles.productCard}>
-                        <Image source={{ uri: item.image }} style={styles.productImg} />
-                        <Text style={styles.productName}>{item.name}</Text>
-                        <Text style={styles.productPrice}>{item.price}</Text>
+                    <Pressable style={styles.popularproductCard}>
+                        <Image source={{ uri: item.image }} style={styles.popularproductImg} />
+                        <Text style={styles.popularproductName}>{item.name}</Text>
+                        <Text style={styles.popularproductPrice}>{item.price}</Text>
                     </Pressable>
                 )}
             />
@@ -343,7 +373,9 @@ export default function homescreen() {
 
                 <Text style={styles.sectionTitle}>Just For You</Text>
 
-                <Pressable style={styles.seeAllBtn}>
+                <Pressable style={styles.seeAllBtn}
+                onPress={()=>Alert.alert('Working on it')}
+                >
 
                     <Text style={styles.seeAllText}>See All</Text>
                     <View style={styles.seeAllIconWrap}>
@@ -355,12 +387,11 @@ export default function homescreen() {
 
             <FlatList
                 data={PRODUCTS}
-                horizontal
                 keyExtractor={(item) => item.id + "popular"}
-                showsHorizontalScrollIndicator={false}
+                 numColumns={2} // 👈 This makes 5 items per row
                 renderItem={({ item }) => (
                     <Pressable style={styles.productforyou}>
-                        <Image source={{ uri: item.image }} style={styles.productImg} />
+                        <Image source={{ uri: item.image }} style={styles.productforyouimage} />
                         <Text style={styles.productName}>{item.name}</Text>
                         <Text style={styles.productPrice}>{item.price}</Text>
                     </Pressable>
@@ -463,8 +494,8 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         shadowOpacity: 0.15,
         shadowRadius: 4,
-        shadowOffset: { width: 0, height: 2 },
-        elevation: 3,
+        shadowOffset: { width: 0, height: 1 },
+        elevation: 2,
     },
     circleImg: {
         width: 64,
@@ -545,20 +576,65 @@ const styles = StyleSheet.create({
     productName: { marginTop: 8, fontSize: 14, fontWeight: "500" },
     productPrice: { fontSize: 14, color: "#FF5722", fontWeight: "600" },
 
-    saleCard: {
-        marginRight: 15,
-        width: 140,
-        borderRadius: 10,
-        backgroundColor: "#FFF3E0",
-        padding: 10,
+
+    flashsaleImg:{
+width: 90,
+        height: 100,
+        borderRadius: 5,
+        alignSelf: "center",
+          
     },
-    saleImg: {
-        width: 120,
-        height: 120,
+    flashsaleCard:{
+        margin:5,
+        width: 100,
+        borderRadius: 5,
+        padding: 10,
+         shadowColor: "#000",
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 1 },
+        elevation: 2,
+    },
+    popularproductCard:{
+        margin:5,
+        width: 95,
+          shadowColor: "#000",
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 1, },
+        elevation: 2,
+    
+    },
+    popularproductImg:{
+        width: 93,
+        height: 103,
         borderRadius: 10,
         alignSelf: "center",
+        
+
+    },
+    popularproductPrice:{
+        fontSize: 14, color: "#FF5722", fontWeight: "600"
+
+    },
+    popularproductName:{
+marginTop: 8, fontSize: 14, fontWeight: "500"
     },
     productforyou: {
+        margin:5,
+        width: 170,
+          shadowColor: "#000",
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 1, },
+        elevation: 2,
+
+    },
+    productforyouimage:{
+      
+        width: 160,
+        alignItems:'center',
+        height:160
 
     }
 });

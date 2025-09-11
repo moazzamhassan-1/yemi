@@ -41,6 +41,13 @@ export default function RootLayout() {
         <Stack.Screen name="newpassword"/>
         <Stack.Screen name="hellocard"/>
         <Stack.Screen name="tab"/>
+        <Stack.Screen name="profilescreen"/>
+        <Stack.Screen name="flashscreen"/>
+        <Stack.Screen name="productscreen"/>
+        <Stack.Screen name="productshop"/>
+        <Stack.Screen name="shopscreen"/>
+        <Stack.Screen name="categoriesscreen"/>
+        
 
       </Stack>
       <StatusBar style="auto" />
