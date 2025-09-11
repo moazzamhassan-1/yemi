@@ -1,9 +1,10 @@
 import { Image } from "expo-image";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 const SplashScreen = () => {
+  const router = useRouter();
   useEffect(() => {
     const timer = setTimeout(() => {
        router.replace("/onboardingscreen"); // 👈 change to "SignUp" if you want
