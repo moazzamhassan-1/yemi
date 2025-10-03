@@ -1,13 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
-    FlatList,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  FlatList,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const CATEGORY_DATA = [
@@ -32,7 +33,13 @@ const CATEGORY_DATA = [
     id: "2",
     title: "Shoes",
     image: "https://randomuser.me/api/portraits/women/22.jpg",
-    subcategories: [],
+    subcategories: [
+      "Boots",
+      "Flats",
+      "Heels",
+      "Sandals",
+      "Athletic Shoes"
+    ],
   },
   {
     id: "3",
@@ -50,15 +57,18 @@ const CATEGORY_DATA = [
     id: "5",
     title: "Accessories",
     image: "https://randomuser.me/api/portraits/women/55.jpg",
-    subcategories: [],
+    subcategories: [
+      "Jewelry",
+      "Watches",
+      "Handbags",
+      "Belts",
+      "Scarves"
+
+    ],
   },
-  {
-    id: "6",
-    title: "Just for You",
-    image: "https://randomuser.me/api/portraits/women/66.jpg",
-    subcategories: [],
-  },
+
 ];
+
 
 export default function categoriesscreen() {
   const [selectedTab, setSelectedTab] = useState("Female");
@@ -75,6 +85,7 @@ export default function categoriesscreen() {
         </TouchableOpacity>
       )}
     />
+
   );
 
   return (
@@ -83,19 +94,24 @@ export default function categoriesscreen() {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>All Categories</Text>
         <Ionicons name="close" size={24} color="black" />
+
       </View>
 
       {/* Tabs */}
       <View style={styles.tabs}>
+
         {["All", "Female", "Male"].map((tab) => (
+
           <TouchableOpacity
             key={tab}
             style={[
               styles.tabButton,
               selectedTab === tab && styles.activeTabButton,
             ]}
+
             onPress={() => setSelectedTab(tab)}
           >
+
             <Text
               style={[
                 styles.tabText,
@@ -104,13 +120,18 @@ export default function categoriesscreen() {
             >
               {tab}
             </Text>
+
           </TouchableOpacity>
+
         ))}
+
       </View>
 
       {/* Categories List */}
-      <ScrollView>
+
+      <ScrollView showsVerticalScrollIndicator={false} >
         {CATEGORY_DATA.map((cat) => (
+
           <View key={cat.id} style={styles.categoryContainer}>
             <TouchableOpacity
               style={styles.categoryHeader}
@@ -119,7 +140,9 @@ export default function categoriesscreen() {
               }
             >
               <Image source={{ uri: cat.image }} style={styles.categoryImage} />
+
               <Text style={styles.categoryTitle}>{cat.title}</Text>
+
               <Ionicons
                 name={expanded === cat.id ? "chevron-up" : "chevron-down"}
                 size={20}
@@ -133,7 +156,31 @@ export default function categoriesscreen() {
             )}
           </View>
         ))}
+
+        <View style={styles.justforyouview}>
+
+          <Image
+            source={{
+              uri: "https://images.pexels.com/photos/374677/pexels-photo-374677.jpeg",
+            }}
+            style={styles.categoryImage}
+          />
+
+          <Pressable style={styles.jusforyoubutton}>
+
+
+            <Text style={styles.categoryTitle}>Just for you</Text>
+
+            <View style={styles.iconecolor}>
+
+              <Ionicons name="arrow-forward" size={16} color="#fff" />
+            </View>
+
+          </Pressable>
+
+        </View>
       </ScrollView>
+
     </View>
   );
 }
@@ -161,7 +208,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   tabButton: {
-    paddingVertical: 6,
+    paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius: 20,
     borderWidth: 1,
@@ -172,8 +219,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#f28c8c",
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#333",
+    paddingHorizontal: 12
   },
   activeTabText: {
     color: "#fff",
@@ -184,6 +232,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: "#ddd",
     paddingBottom: 10,
+    paddingHorizontal: 10
+
   },
   categoryHeader: {
     flexDirection: "row",
@@ -213,4 +263,28 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#333",
   },
+  justforyouview: {
+    marginBottom: 15,
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#ddd",
+    paddingBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10
+  },
+  jusforyoubutton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  iconecolor: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#FF7A00",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
 });

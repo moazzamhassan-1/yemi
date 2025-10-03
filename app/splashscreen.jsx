@@ -3,44 +3,36 @@ import { router } from "expo-router";
 import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
-const SplashScreen = ({ navigation }: any) => {
+export default function SplashScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.navigate("/categoriesscreen"); // 👈 change to "SignUp" if you want
+      router.navigate("/addresssetting");
     }, 200);
 
     return () => clearTimeout(timer);
-    
-  }, [navigation]);
+  }, []);
 
   return (
-
     <View style={styles.container}>
-
-     <Image
-     
-     source={require('../assets/images/splash.png')}
-     style={styles.logo}
-     
-     />
-
-    
+      <Image
+        source={require("../assets/images/splash.png")}
+        style={styles.logo}
+      />
+      
     </View>
   );
-};
-
-export default SplashScreen;
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff", // white background
+    backgroundColor: "#fff",
   },
   logo: {
-  height:400,
-  width:400,
-  resizeMode:'center'
+    height: 400,
+    width: 400,
+    resizeMode: "center",
   },
 });

@@ -1,7 +1,6 @@
 
 import { Ionicons } from "@expo/vector-icons";
 import { ImageBackground } from "expo-image";
-import React from "react";
 import {
     Alert,
     Dimensions,
