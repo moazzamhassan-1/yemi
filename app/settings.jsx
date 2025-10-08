@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
+  Modal,
   ScrollView,
   StyleSheet,
   Text,
@@ -9,7 +10,10 @@ import {
 } from "react-native";
 
 export default function SettingsScreen() {
+
   const [expanded, setExpanded] = useState(false);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const Row = ({ label, value, onPress, showArrow = true }) => (
     <TouchableOpacity style={styles.row} onPress={onPress}>
@@ -59,7 +63,9 @@ export default function SettingsScreen() {
           <Row label="Language" value="English" onPress={() => { }} />
           <Row label="About Slada" onPress={() => { }} />
 
-          <TouchableOpacity style={{ marginTop: 30 }}>
+          <TouchableOpacity style={{ marginTop: 30 }}
+          onPress={()=> setModalVisible(true)}
+          >
             <Text style={styles.delete}>Delete My Account</Text>
           </TouchableOpacity>
 
@@ -70,22 +76,64 @@ export default function SettingsScreen() {
         </>
       )}
 
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        animationType="fade"
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
+            {/* Warning Icon */}
+            <View style={styles.iconCircle}>
+              <Text style={styles.iconText}>!</Text>
+            </View>
+
+            {/* Title */}
+            <Text style={styles.title}>You are going to delete your account</Text>
+            <Text style={styles.subtitle}>
+              You won’t be able to restore your data
+            </Text>
+
+            {/* Buttons */}
+            <View style={styles.buttonRow}>
+              <TouchableOpacity
+                style={[styles.button, styles.cancelButton]}
+                onPress={() => setModalVisible(false)}
+              >
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.button, styles.deleteButton]}
+                onPress={() => alert("Account Deleted")}
+              >
+                <Text style={styles.deleteText}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+
+          </View>
+          
+        </View>
+
+      </Modal>
+
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    backgroundColor: "#fff", 
-    paddingHorizontal: 20 
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingHorizontal: 20
   },
   section: {
     fontWeight: "600",
     fontSize: 18,
     color: "#000",
     fontWeight: '700',
-    marginTop:35
+    marginTop: 35
   },
   setting: {
     fontWeight: "600",
@@ -102,7 +150,7 @@ const styles = StyleSheet.create({
     paddingVertical: 25,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: "#ccc",
-  
+
   },
   label: {
     fontSize: 15,
@@ -146,5 +194,75 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     color: "#444"
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.3)",
+  },
+  modalContainer: {
+    width: "80%",
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  iconCircle: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: "#ffecec",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 15,
+  },
+  iconText: {
+    fontSize: 22,
+    color: "#e74c3c",
+    fontWeight: "bold",
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 6,
+  },
+  subtitle: {
+    fontSize: 13,
+    color: "#666",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  button: {
+    flex: 1,
+    paddingVertical: 12,
+    marginHorizontal: 5,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  cancelButton: {
+    backgroundColor: "#000",
+  },
+  deleteButton: {
+    backgroundColor: "#f28b82",
+  },
+  cancelText: {
+    color: "#fff",
+    fontWeight: "600",
+  },
+  deleteText: {
+    color: "#fff",
+    fontWeight: "600",
   },
 });

@@ -156,7 +156,7 @@ export default function profilescreen() {
 
           <Ionicons name="grid-outline" size={22} color="#333" style={styles.icon} />
           <Ionicons name="menu-outline" size={22} color="#333" style={styles.icon} />
-          <Ionicons name="settings-outline" size={22} color="#333" />
+          <Ionicons name="settings-outline" size={22} color="#333" style={styles.icon}/>
 
         </View>
 
@@ -244,177 +244,9 @@ export default function profilescreen() {
             </Pressable>
         )}
       />
+      
      </View>
 
-     <View style={styles.section}>
-      <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>New Item</Text>
-
-        <Pressable style={styles.seeAllBtn}>
-          <Text style={styles.seeAllText}>See All</Text>
-          
-            <Pressable style={styles.seeAllIconWrap}
-             onPress={() => Alert.alert("Working on it")}
-            >
-            <Ionicons name="arrow-forward" size={16} color="#fff" />
-            </Pressable>
-       
-        </Pressable>
-      </View>
-
-      <FlatList
-        data={NEW_ITEMS}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(i) => i.id}
-        renderItem={({ item }) => (
-          <Pressable style={styles.newItemCard}
-          onPress={()=>Alert.alert('Working on it')}
-          >
-            
-            <Image source={{ uri: item.img }} style={styles.newItemImg} />
-            <View style={styles.newItemMeta}>
-              <Text style={styles.newItemTitle}>{item.title}</Text>
-              <Text style={styles.newItemPrice}>{item.price}</Text>
-            </View>
-          </Pressable>
-        )}
-      />
-     </View>
-
-      <View style={styles.sectionWrapper}>
-     
-                     <View style={styles.sectionHeader}>
-     
-                         <Text style={styles.sectionTitle}>Categories</Text>
-     
-                          <Pressable style={styles.seeAllBtn}>
-          <Text style={styles.seeAllText}>See All</Text>
-          
-            <Pressable style={styles.seeAllIconWrap}
-             onPress={() => Alert.alert("Working on it")}
-            >
-            <Ionicons name="arrow-forward" size={16} color="#fff" />
-            </Pressable>
-       
-        </Pressable>
-                     </View>
-     
-                     <FlatList
-                         data={CATEGORIES}
-                         keyExtractor={(item) => item.id}
-                         numColumns={2}
-                         columnWrapperStyle={{ gap: 12 }}
-                         contentContainerStyle={{ gap: 12 }}
-                         renderItem={({ item }) => (
-
-                             <Pressable style={styles.catCard}
-                               onPress={() => Alert.alert("Working on it")}
-                             >
-                                 {/* Mosaic Images */}
-
-                                 <View style={styles.mosaic}>
-
-                                     <View style={styles.row}>
-                                         <Image source={{ uri: item.images[0] }} style={styles.tile} />
-                                         <Image source={{ uri: item.images[1] }} style={styles.tile} />
-                                     </View>
-
-                                     <View style={styles.row}>
-                                         <Image source={{ uri: item.images[2] }} style={styles.tile} />
-                                         <Image source={{ uri: item.images[3] }} style={styles.tile} />
-                                     </View>
-
-                                 </View>
-     
-                                 {/* Name + Count */}
-                                 <View style={styles.metaRow}>
-                                     <Text style={styles.catName}>{item.title}</Text>
-                                     <View style={styles.countPill}>
-                                         <Text style={styles.countText}>{item.count}</Text>
-                                     </View>
-                                 </View>
-                             </Pressable>
-                         )}
-                     />
-                 </View>
-
- <View style={styles.sectionHeader}>
-
-                <Text style={styles.sectionTitle}>Flash Sale</Text>
-
-               <Pressable style={styles.seeAllBtn}>
-          <Text style={styles.seeAllText}>See All</Text>
-          
-            <Pressable style={styles.seeAllIconWrap}
-             onPress={() => Alert.alert("Working on it")}
-            >
-            <Ionicons name="arrow-forward" size={16} color="#fff" />
-            </Pressable>
-       
-        </Pressable>
-            </View>
-
-            <FlatList
-                data={PRODUCTS}
-                horizontal
-                keyExtractor={(item) => item.id + "flash"}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <Pressable style={styles.saleCard}
-                      onPress={() => Alert.alert("Working on it")}
-                    >
-                        <Image source={{ uri: item.image }} style={styles.saleImg} />
-                        <Text style={styles.productName}>{item.name}</Text>
-                        <Text style={styles.productPrice}>{item.price}</Text>
-                    </Pressable>
-                )}
-            />
-
-     <View style={styles.section}>
-      <View style={styles.rowHeader}>
-        <Text style={styles.sectionTitle}>Top Orders</Text>
-      </View>
-
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.recentScroll}>
-        {TopProduct.map((item, index) => (
-          <Pressable  onPress={() => Alert.alert("Working on it")}>
-          <Image key={index} source={{ uri: item }} style={styles.recentImage} />
-          </Pressable>
-        ))}
-      </ScrollView>
-     </View>
- <View style={styles.sectionHeader}>
-
-                <Text style={styles.sectionTitle}>Just For You</Text>
-
-                 <Pressable style={styles.seeAllBtn}>
-          <Text style={styles.seeAllText}>See All</Text>
-          
-            <Pressable style={styles.seeAllIconWrap}
-             onPress={() => Alert.alert("Working on it")}
-            >
-            <Ionicons name="arrow-forward" size={16} color="#fff" />
-            </Pressable>
-       
-        </Pressable>
-            </View>
-
-            <FlatList
-                data={PRODUCTS}
-                horizontal
-                keyExtractor={(item) => item.id + "popular"}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <Pressable style={styles.productforyou} 
-                      onPress={() => Alert.alert("Working on it")}
-                    >
-                        <Image source={{ uri: item.image }} style={styles.productImg} />
-                        <Text style={styles.productName}>{item.name}</Text>
-                        <Text style={styles.productPrice}>{item.price}</Text>
-                    </Pressable>
-                )}
-            />
     </ScrollView>
   );
 }
@@ -453,6 +285,7 @@ const styles = StyleSheet.create({
   iconRow: {
     flexDirection: "row",
     marginLeft: "auto",
+    alignItems:'center'
   },
   icon: {
     marginHorizontal: 5,
@@ -463,7 +296,7 @@ const styles = StyleSheet.create({
   greeting: {
     fontSize: 24,
     fontWeight: "700",
-    marginBottom: 20,
+  
   },
   announcementBox: {
     backgroundColor: "#f9f9f9",
@@ -488,16 +321,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   section: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   rowHeader: {
     width: "100%",
-    marginVertical: 10,
+    marginVertical: 5,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: "700",
-    marginBottom: 10,
+    marginBottom: 5,
   },
   recentScroll: {
     flexDirection: "row",
@@ -526,127 +359,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   storyItem: {
-    width: 72,
+    width:102,
     alignItems: "center",
+    margin:3
   },
   storyAvatar: {
-    width: 80,
-    height: 140,
+    width: 100,
+    height: 170,
     borderRadius: 6,
     resizeMode: "cover",
+    
   },
   storyName: {
     marginTop: 8,
     fontSize: 12,
     fontWeight: "600",
-  },
-  sectionHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 10,
-    alignItems: "center",
-  },
-  seeAllBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  seeAllText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#2e2e2e",
-  },
-  seeAllIconWrap: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: "#FF7A00",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  newItemCard: {
-    width: 100,
-    marginRight: 14,
-    borderRadius: 14,
-    overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "white",
-  },
-  newItemImg: {
-    width: "100%",
-    height: 130,
-    resizeMode: "cover",
-  },
-  newItemMeta: {
-    padding: 10,
-  },
-  newItemTitle: {
-    fontSize: 14,
-    fontWeight: "700",
-  },
-  newItemPrice: {
-    marginTop: 6,
-    fontSize: 13,
-    color: "#FF7A00",
-    fontWeight: "700",
-  },
-   sectionWrapper: { marginBottom: 20 },
- 
-    link: {
-        fontSize: 14,
-        color: "#FF5722",
-    },
-
-
-    catCard: {
-        flex: 1,
-        backgroundColor: "#F5F7FB",
-        padding: 8,
-    },
-    mosaic: { gap: 6 },
-    row: { flexDirection: "row", gap: 6 },
-    tile: {
-        flex: 1,
-        height: 70,
-        borderRadius: 10,
-        backgroundColor: "#e9eef6",
-    },
-    metaRow: {
-        marginTop: 8,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-    },
-    catName: { fontSize: 16, fontWeight: "700", color: "#1b1b1b", flex: 1 },
-    countPill: {
-        paddingHorizontal: 10,
-        height: 24,
-        borderRadius: 999,
-        backgroundColor: "#E8F0FF",
-        alignItems: "center",
-        justifyContent: "center",
-        marginLeft: 8,
-    },
-    countText: { fontSize: 12, fontWeight: "700", color: "#2F5FFF" },
-     productCard: { marginRight: 15, width: 120 },
-    productImg: { width: 120, height: 120, borderRadius: 10 },
-    productName: { marginTop: 8, fontSize: 14, fontWeight: "500" },
-    productPrice: { fontSize: 14, color: "#FF5722", fontWeight: "600" },
-
-    saleCard: {
-        marginRight: 15,
-        width: 140,
-        borderRadius: 10,
-        backgroundColor: "#FFF3E0",
-        padding: 10,
-    },
-    saleImg: {
-        width: 120,
-        height: 120,
-        borderRadius: 10,
-        alignSelf: "center",
-    },
-productforyou: {
-
-    }
+  }, 
 });

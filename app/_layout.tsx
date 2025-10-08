@@ -30,6 +30,7 @@ export default function RootLayout() {
       >
 
         <Stack.Screen name="splashscreen" />
+        <Stack.Screen name="hellocard" />
         <Stack.Screen name="getstarted " />
         <Stack.Screen name="loginscreen" />
         <Stack.Screen name="registerscreen" />
@@ -39,10 +40,10 @@ export default function RootLayout() {
         <Stack.Screen name="recoverpassword" />
         <Stack.Screen name="verficationscreen" />
         <Stack.Screen name="newpassword" />
-        <Stack.Screen name="hellocard" />
         <Stack.Screen name="tab" />
         <Stack.Screen name="profilescreen" />
         <Stack.Screen name="flashscreen" />
+        <Stack.Screen name="seeallscreen"/>
         <Stack.Screen name="productscreen" />
         <Stack.Screen name="productshop" />
         <Stack.Screen name="shopscreen" />
